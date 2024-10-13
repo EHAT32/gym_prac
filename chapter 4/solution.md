@@ -41,7 +41,7 @@ $$
 
 Величина сошлась к тому же значению, что и раньше. Тогда значение $v_\pi(15)$ не изменится.
 
-### Exrcise 4.3
+### Exercise 4.3
 
 What are the equations analogous to (4.3), (4.4), and (4.5) for the actionvalue function $q_{\pi}$ and its successive approximation by a sequence of functions $q_0$, $q_1$, $q_2$, ... ?
 
@@ -64,3 +64,23 @@ $$
 $$
     q_{k+1}(s, a) = \sum_{s', r} p(s',r|s,a) \left[r + \gamma \sum_{a'} \pi(a'|s') q_{k}(s',a')\right]
 $$
+
+### Exercise 4.4
+
+The policy iteration algorithm on page 80 has a subtle bug in that it may never terminate if the policy continually switches between two or more policies that are equally good. This is ok for pedagogy, but not for actual use. Modify the pseudocode so that convergence is guaranteed.
+
+![alt text](image-2.png)
+
+We should change old-action != $\pi(s)$ condition to old-value != $V(s)$, then policy-stable = false
+
+### Exercise 4.5
+
+How would policy iteration be defined for action values? Give a complete algorithm for computing $q_*$, analogous to that on page 80 or computing $v_*$. Please pay special attention to this exercise, because the ideas involved will be used throughout the rest of the book.
+
+Итеративный метод для $q_*$ был определён в прошлых заданиях:
+
+$$
+    q_{k+1}(s, a) = \sum_{s', r} p(s',r|s,a) \left[r + \gamma \sum_{a'} \pi(a'|s') q_{k}(s',a')\right]
+$$
+
+И теперь делаем $\pi(s) = \argmax\limits_a Q(s,a) $
