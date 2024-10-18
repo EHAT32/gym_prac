@@ -84,3 +84,12 @@ $$
 $$
 
 И теперь делаем $\pi(s) = \argmax\limits_a Q(s,a) $
+
+### Exercise 4.6
+
+Suppose you are restricted to considering only policies that are $\varepsilon$-soft, meaning that the probability of selecting each action in each state, s, is at least $\varepsilon$/|A(s)|.
+Describe qualitatively the changes that would be required in each of the steps 3, 2, and 1,
+in that order, of the policy iteration algorithm for $v_*$ on page 80.
+
+
+Принципиально необходимо изменить только шаг 3. Не жадные действия случаются с вероятностью $\varepsilon / |A(s)|$. А действие $\argmax$ с вероятностью $1 - \dfrac{|A(s) - 1|}{|A(s)|}$
