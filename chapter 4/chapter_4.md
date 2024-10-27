@@ -93,3 +93,13 @@ in that order, of the policy iteration algorithm for $v_*$ on page 80.
 
 
 Принципиально необходимо изменить только шаг 3. Не жадные действия случаются с вероятностью $\varepsilon / |A(s)|$. А действие $\argmax$ с вероятностью $1 - \dfrac{|A(s) - 1|}{|A(s)|}$
+
+### Exercise 4.10
+
+What is the analog of the value iteration update (4.10) for action values, $q_{k+1}(s, a)$?
+
+Аналогом такого правила обновления будет
+
+$$
+    q_{k+1}(s,a) = \mathbb{E}[R_{t+1}+\gamma \max\limits_{a'}q_k(s,a')] = \sum\limits_{s', r} p(s', r | s, a)[r + \gamma \max\limits_{a'}q_k(s',a')]
+$$
