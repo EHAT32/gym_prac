@@ -18,4 +18,18 @@ Suppose every-visit MC was used instead of first-visit MC on the blackjack task.
 
 ### Exercise 5.3
 
+What is the backup diagram for Monte Carlo estimation of $q_\pi$?
+
 Диаграммы по структуре аналогичный диаграмме для функции $V_{\pi}(s)$, которая строится по Монте Карло. Только здесь также появляются вершины, обозначающие выбранное действие.
+
+### Exercise 5.4
+
+The pseudocode for Monte Carlo ES is ineffcient because, for each state–action pair, it maintains a list of all returns and repeatedly calculates their mean. It would be more effcient to use techniques similar to those explained in Section 2.4 to maintain just the mean and a count (for each state–action pair) and update them incrementally. Describe how the pseudocode would be altered to achieve this.
+
+Для решения этой проблемы будем подсчитывать количество элементов, взятых в усреднении и делать соответствующее инкрементирование:
+
+Сперва увеличиваем счётчик $N$, потом:
+
+$$
+    Q(S_t,A_t) = Q(S_t,A_t) + \dfrac{1}{N}(G - Q(S_t,A_t))
+$$
