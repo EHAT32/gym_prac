@@ -33,3 +33,27 @@ The pseudocode for Monte Carlo ES is ineffcient because, for each state–action
 $$
     Q(S_t,A_t) = Q(S_t,A_t) + \dfrac{1}{N}(G - Q(S_t,A_t))
 $$
+
+### Exercise 5.5
+
+Consider an MDP with a single nonterminal state and a single action that transitions back to the nonterminal state with probability p and transitions to the terminal state with probability 1-p. Let the reward be +1 on all transitions, and let γ = 1. Suppose you observe one episode that lasts 10 steps, with a return of 10. What are the first-visit and every-visit estimators of the value of the nonterminal state
+
+Представим этот эпизод в виде таблицы
+
+| шаг | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| состояние | s | s | s | s | s | s | s | s | s | s | T |
+| награда | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 |
+| действие | p | p | p | p | p | p | p | p | p | 1 - p | - |
+
+Для first-visit получим
+
+$$
+    V(s) = \dfrac{10}{1} = 10
+$$
+
+Для every-visit получим
+
+$$
+    V(s) = \dfrac{1 + 2 + \dots + 10}{10} = 5.5
+$$
