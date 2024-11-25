@@ -55,5 +55,39 @@ $$
 Для every-visit получим
 
 $$
-    V(s) = \dfrac{1 + 2 + \dots + 10}{10} = 5.5
+    V(s) = \dfrac{1 + 2 + \dots + 10}{10} = 5.5   
+$$
+
+### Exercise 5.6
+
+What is the equation analogous to (5.6) for action values q(s, a) instead of state values v(s), again given returns generated using b?
+
+Формула (5.6):
+
+$$
+    V(s) = \dfrac{\sum\limits_{t\in\mathcal{T}(s)}\rho_{t:T(t)-1}G_t}{\sum\limits_{t\in\mathcal{T}(s)}\rho_{t:T(t)-1}}
+$$
+
+Добавим аргумент выбора действия
+
+$$
+    Q(s, a) = \dfrac{\sum\limits_{t\in\mathcal{T}(s, a)}\rho_{t:T(t)-1}G_t}{\sum\limits_{t\in\mathcal{T}(s, a)}\rho_{t:T(t)-1}}
+$$
+
+Распишем $\rho$
+
+$$
+    Q(s, a) = \dfrac{\sum\limits_{t\in\mathcal{T}(s, a)}\prod\limits_{k=t}^{T-1}\dfrac{\pi(A_k|S_k)}{b(A_k|S_k)} G_t}{\sum\limits_{t\in\mathcal{T}(s, a)}\prod\limits_{k=t}^{T-1}\dfrac{\pi(A_k|S_k)}{b(A_k|S_k)}}
+$$
+
+При оценке $Q(s,a)$ мы в первую очередь интересуемся тем, чтобы оценить функцию при принятии действия $a_t$ в состоянии $s_t$ в момент времени $t$, поэтому нам не важно, какой стратегией мы выбрали данное действие, поэтому положим, что 
+
+$$
+    \pi(A_t=a|S_t=s)=1, \; b(A_t=a,S_t=s)=1
+$$
+
+Тогда 
+
+$$
+    Q(s, a) = \dfrac{\sum\limits_{t\in\mathcal{T}(s, a)}\rho_{t+1:T(t)-1}G_t}{\sum\limits_{t\in\mathcal{T}(s, a)}\rho_{t+1:T(t)-1}}
 $$
