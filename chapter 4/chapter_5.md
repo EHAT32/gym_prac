@@ -91,3 +91,13 @@ $$
 $$
     Q(s, a) = \dfrac{\sum\limits_{t\in\mathcal{T}(s, a)}\rho_{t+1:T(t)-1}G_t}{\sum\limits_{t\in\mathcal{T}(s, a)}\rho_{t+1:T(t)-1}}
 $$
+
+### Exercise 5.7
+
+In learning curves such as those shown in Figure 5.3 error generally decreases with training, as indeed happened for the ordinary importance-sampling method. But for the weighted importance-sampling method error first increased and then decreased. Why do you think this happened?
+
+![alt text](image-4.png)
+
+Второй вариант более склонен к расчёту функции ценности по сэмплирующей стратегии. А так как она носит более исследовательский характер, она зачастую будет выбирать неоптимальные действия, поэтому ошибка будет сперва расти.
+
+
