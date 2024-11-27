@@ -101,3 +101,8 @@ In learning curves such as those shown in Figure 5.3 error generally decreases w
 Второй вариант более склонен к расчёту функции ценности по сэмплирующей стратегии. А так как она носит более исследовательский характер, она зачастую будет выбирать неоптимальные действия, поэтому ошибка будет сперва расти.
 
 
+### Exercise 5.8
+
+The results with Example 5.5 and shown in Figure 5.4 used a first-visit MC method. Suppose that instead an every-visit MC method was used on the same problem. Would the variance of the estimator still be infinite? Why or why not?
+
+В формуле для вариации будет больше слагаемых, чем в first-visit методе, так как они все неотрицательны, то да, вариация останется бесконечной.
