@@ -120,4 +120,17 @@ $$
     V(S_t) \leftarrow V(S_t) + \dfrac{1}{N(S_t)} \left[ G - V(S_t) \right]
 $$
 
-Инициализируем $N(S_t) = 0$ -- количество посещений состояния $S_t$ среди всех эпизодовю
+Инициализируем $N(S_t) = 0$ -- количество посещений состояния $S_t$ среди всех эпизодов.
+
+### Exercise 5.10
+
+Derive the weighted-average update rule (5.8) from (5.7). Follow the pattern of the derivation of the unweighted rule (2.3).
+
+$$
+    V_{n+1} = \dfrac{\sum_{k=1}^{n}W_k G_k}{C_n} \\
+    V_{n + 1} C_n = \sum_{k=1}^{n}W_k G_k \\
+    V_{n + 1} C_n = W_n G_n + \sum_{k=1}^{n-1}W_k G_k \\
+    V_{n + 1} C_n = W_n G_n + C_{n - 1} V_{n} \\ 
+    V_{n + 1} C_n = W_n G_n + \left( C_n - W_n \right) V_{n} = W_n G_n + C_n V_n - W_n V_n \\
+    V_{n + 1} = V_n + \dfrac{W_n}{C_n} \left[ G_n - V_n \right]
+$$  
