@@ -106,3 +106,18 @@ In learning curves such as those shown in Figure 5.3 error generally decreases w
 The results with Example 5.5 and shown in Figure 5.4 used a first-visit MC method. Suppose that instead an every-visit MC method was used on the same problem. Would the variance of the estimator still be infinite? Why or why not?
 
 В формуле для вариации будет больше слагаемых, чем в first-visit методе, так как они все неотрицательны, то да, вариация останется бесконечной.
+
+### Exercise 5.9
+
+Modify the algorithm for first-visit MC policy evaluation (Section 5.1) to use the incremental implementation for sample averages described in Section 2.4.
+
+![alt text](image-5.png)
+
+Нужно изменить последние две строки на:
+
+$$
+    N(S_t) \leftarrow N(S_t) + 1 \\
+    V(S_t) \leftarrow V(S_t) + \dfrac{1}{N(S_t)} \left[ G - V(S_t) \right]
+$$
+
+Инициализируем $N(S_t) = 0$ -- количество посещений состояния $S_t$ среди всех эпизодовю
