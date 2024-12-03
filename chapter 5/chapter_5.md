@@ -134,3 +134,10 @@ $$
     V_{n + 1} C_n = W_n G_n + \left( C_n - W_n \right) V_{n} = W_n G_n + C_n V_n - W_n V_n \\
     V_{n + 1} = V_n + \dfrac{W_n}{C_n} \left[ G_n - V_n \right]
 $$  
+
+### Exercise 5.11
+
+In the boxed algorithm for off-policy MC control, you may have been 
+expecting the W update to have involved the importance-sampling ratio $\dfrac{\pi(A_t|S_t)}{b(A_t|S_t)}$ , but instead it involves $\dfrac{1}{b(A_t|S_t)}$ . Why is this nevertheless correct?
+
+В данном случае такое выражение будет верным, потому что подразумевается, что целевая стратегия будет жадной, поэтому вероятность выбора конкретного действия будет равна 1.
