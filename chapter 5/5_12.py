@@ -82,15 +82,15 @@ class RaceTrack:
         newXVel = self.vel[0] + xVelInc
         newYVel = self.vel[1] + yVelInc
         velNorm = np.linalg.norm([newXVel, newYVel])
-        flag = True
-        while not (0 < velNorm <= np.sqrt(2 * 16)) or not (-5 < newXVel <= 0) or not (0 <= newYVel < 5) or newXVel * newYVel == 0 or flag:
+        firstEntrance = True
+        while not (0 < velNorm <= np.sqrt(2 * 16)) or not (-5 < newXVel <= 0) or not (0 <= newYVel < 5) or newXVel * newYVel == 0 or firstEntrance:
             xVelInc = np.random.randint(self.xVelRange[0], self.xVelRange[1] + 1)
             yVelInc = np.random.randint(self.yVelRange[0], self.yVelRange[1] + 1)
             
             newXVel = self.vel[0] + xVelInc
             newYVel = self.vel[1] + yVelInc
             velNorm = np.linalg.norm([newXVel, newYVel])
-            flag = False
+            firstEntrance = False
             
         return xVelInc, yVelInc
         
