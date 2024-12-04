@@ -52,11 +52,7 @@ class RaceTrack:
         for _ in range(self.T):
             states.append(self.pos)
             self.draw()
-            xVelInc = 0
-            yVelInc = 0
-            while np.linalg.norm(self.vel) == 0:
-                xVelInc = np.random.randint(self.xVelRange[0], self.xVelRange[1] + 1)
-                yVelInc = np.random.randint(self.yVelRange[0], self.yVelRange[1] + 1)
+            xVelInc, yVelInc = self.sampleAction()
                 
             actions.append([xVelInc + 1, yVelInc + 1])
                 
@@ -79,13 +75,31 @@ class RaceTrack:
         
     def sampleStartingPoint(self):
         self.pos = [np.random.randint(self.startingLine[0][0], self.startingLine[1][0]+1), np.random.randint(self.startingLine[0][1], self.startingLine[1][1]+1)]
+    
+    def sampleAction(self):
+        xVelInc = 0
+        yVelInc = 0
+        newXVel = self.vel[0] + xVelInc
+        newYVel = self.vel[1] + yVelInc
+        velNorm = np.linalg.norm([newXVel, newYVel])
+        flag = True
+        while not (0 < velNorm <= np.sqrt(2 * 16)) or not (-5 < newXVel <= 0) or not (0 <= newYVel < 5) or newXVel * newYVel == 0 or flag:
+            xVelInc = np.random.randint(self.xVelRange[0], self.xVelRange[1] + 1)
+            yVelInc = np.random.randint(self.yVelRange[0], self.yVelRange[1] + 1)
+            
+            newXVel = self.vel[0] + xVelInc
+            newYVel = self.vel[1] + yVelInc
+            velNorm = np.linalg.norm([newXVel, newYVel])
+            flag = False
+            
+        return xVelInc, yVelInc
         
     def notOnTrack(self):    
         x1 = min(self.pos[0], self.pos[0] + self.vel[0])
         x2 = max(self.pos[0], self.pos[0] + self.vel[0])
         y1 = min(self.pos[1], self.pos[1] + self.vel[1])
         y2 = max(self.pos[1], self.pos[1] + self.vel[1])
-        return (self.track[x1 : x2 + 1][y1:y2+1] == -1).any()
+        return (self.track[x1 : x2 + 1,y1:y2+1] == -1).any()
         
     def outOfBounds(self):
         return not (0 <= self.pos[0] + self.vel[0] < self.track.shape[0] and 0 <= self.pos[1] + self.vel[1] < self.track.shape[1])
