@@ -5,6 +5,7 @@ import time
 import matplotlib.pyplot as plt
 import random
 import gc
+from tqdm import tqdm
 
 def argMaxLastNAxes(arr, N):
     s = arr.shape
@@ -13,7 +14,7 @@ def argMaxLastNAxes(arr, N):
     return np.unravel_index(max_idx, s[-N:])[0]
 
 class RaceTrack:
-    def __init__(self, episodeDuration = 40, velocityLimit = (5, 5), stepReward = -1, gamma = 1) -> None:
+    def __init__(self, episodeDuration = 100, velocityLimit = (5, 5), stepReward = 1, gamma = 1) -> None:
         self.createTrack()
         self.T = episodeDuration
         self.xVelRange = [-1, 1]
@@ -44,11 +45,12 @@ class RaceTrack:
         self.finishLine = [[0, 16], [5, 16]]
         
     def evaluatePolicy(self):
-        self.policy = np.argmax(self.Q, axis=-1)
+        self.policy = np.argmin(self.Q, axis=-1)
     
-    def offPolicyMC(self):
-        while True:
+    def offPolicyMC(self, episodeTrunc = 500000):
+        for _ in tqdm(range(episodeTrunc)):
             self.episodeNum += 1
+            # print('Starting episode ', self.episodeNum)
             states, actions, rewards = self.sampleData()
             b = 1/9
             G = 0
@@ -56,15 +58,19 @@ class RaceTrack:
             for t in range(len(states) - 1, -1, -1):
                 G = self.gamma * G + rewards[t]
                 self.count[*states[t], actions[t]] += W
+                if self.Q[*states[t], actions[t]] == -np.inf:
+                    self.Q[*states[t], actions[t]] = 0
                 self.Q[*states[t], actions[t]] += W / self.count[*states[t], actions[t]] * (G - self.Q[*states[t], actions[t]])
                 self.evaluatePolicy()
                 if actions[t] != self.policy[*states[t]]:
+                    # print('Breaking episode')
                     break
                 W /= b
-
-    
-    
-    def sampleData(self):
+        print(self.policy)
+        _, _, _ = self.sampleData(policy='target', draw=True)
+                
+        
+    def sampleData(self, policy = 'exploring', draw = False):
         #starting point:
         self.vel = [0, 0]
         self.sampleStartingPoint()
@@ -74,8 +80,10 @@ class RaceTrack:
         
         for _ in range(self.T):
             states.append(self.pos)
-            self.draw()
-            xVelInc, yVelInc = self.sampleAction()
+            if draw:
+                self.draw()
+                print(self.vel)
+            xVelInc, yVelInc = self.sampleAction(policy)
                 
             actions.append((xVelInc + 1) * 3 + (yVelInc + 1))
                 
@@ -83,50 +91,50 @@ class RaceTrack:
             self.vel[1] += yVelInc
             
             if self.crossesFinishLine():
-                rewards.append(0)
+                rewards.append(-100)
                 return states, actions, rewards
             
-            rewards.append(self.stepReward)
-            
+            penalty = 0
             if self.outOfBounds():
                 self.sampleStartingPoint()
                 self.vel = [0, 0]
+                penalty = 200
+                rewards.append(self.stepReward + penalty)
                 continue
             
             if self.notOnTrack():
                 self.sampleStartingPoint()
                 self.vel = [0, 0]
+                penalty = 200
+                rewards.append(self.stepReward + penalty)
                 continue
-            
+            rewards.append(self.stepReward)
             self.pos[0] += self.vel[0]
             self.pos[1] += self.vel[1]
-        gc.collect()
         return states, actions, rewards
         
     def sampleStartingPoint(self):
         self.pos = [np.random.randint(self.startingLine[0][0], self.startingLine[1][0]+1), np.random.randint(self.startingLine[0][1], self.startingLine[1][1]+1)]
     
-    def sampleAction(self):
-        xVelInc = 0
-        yVelInc = 0
-        newXVel = self.vel[0] + xVelInc
-        newYVel = self.vel[1] + yVelInc
-        velNorm = np.linalg.norm([newXVel, newYVel])
-        firstEntrance = True
-        while not (0 < velNorm <= np.sqrt(2 * 16)) or not (-5 < newXVel <= 0) or not (0 <= newYVel < 5) or newXVel * newYVel == 0 or firstEntrance:
-            # xVelInc = np.random.randint(self.xVelRange[0], self.xVelRange[1] + 1)
-            # yVelInc = np.random.randint(self.yVelRange[0], self.yVelRange[1] + 1)
-            
-            xVelInc = random.randint(self.xVelRange[0], self.xVelRange[1])
-            yVelInc = random.randint(self.yVelRange[0], self.yVelRange[1])
-            
-            # xVelInc = int((self.xVelRange[1] + 1 - self.xVelRange[0])*random.random() +self.xVelRange[0] )
-            # yVelInc = int((self.yVelRange[1] + 1 - self.yVelRange[0])*random.random() +self.yVelRange[0] )
-            
+    def sampleAction(self, policy):
+        if policy == 'exploring':
+            xVelInc = 0
+            yVelInc = 0
             newXVel = self.vel[0] + xVelInc
             newYVel = self.vel[1] + yVelInc
             velNorm = np.linalg.norm([newXVel, newYVel])
-            firstEntrance = False
+            firstEntrance = True
+            while not (0 < velNorm <= np.sqrt(2 * 16)) or not (-5 < newXVel < 5) or not (-5 < newYVel < 5) or newXVel * newYVel == 0 or firstEntrance:
+                xVelInc = np.random.randint(self.xVelRange[0], self.xVelRange[1] + 1)
+                yVelInc = np.random.randint(self.yVelRange[0], self.yVelRange[1] + 1)
+                
+                newXVel = self.vel[0] + xVelInc
+                newYVel = self.vel[1] + yVelInc
+                velNorm = np.linalg.norm([newXVel, newYVel])
+                firstEntrance = False
+        else:
+            xVelInc = self.policy[*self.pos] // 3 - 1
+            yVelInc = self.policy[*self.pos] % 3 - 1
             
         return xVelInc, yVelInc
         
@@ -154,7 +162,8 @@ class RaceTrack:
         img[self.pos[0], self.pos[1]] = 8
         plt.imshow(img)
         plt.title(f"Episode num: {self.episodeNum}")
-        plt.pause(0.001)        
+        plt.pause(0.1)  
+        gc.collect()      
         
 exp = RaceTrack()
 plt.ion()
