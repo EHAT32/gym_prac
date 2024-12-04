@@ -59,7 +59,7 @@ class RaceTrack:
             self.vel[0] += xVelInc
             self.vel[1] += yVelInc
             
-            if self.doesIntersect():
+            if self.crossesFinishLine():
                 rewards.append(0)
                 return states, actions, rewards
             
@@ -104,7 +104,7 @@ class RaceTrack:
     def outOfBounds(self):
         return not (0 <= self.pos[0] + self.vel[0] < self.track.shape[0] and 0 <= self.pos[1] + self.vel[1] < self.track.shape[1])
         
-    def doesIntersect(self):
+    def crossesFinishLine(self):
         y_min = min(self.pos[1], self.pos[1] + self.vel[1])
         y_max = max(self.pos[1], self.pos[1] + self.vel[1])
         
