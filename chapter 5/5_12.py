@@ -41,6 +41,10 @@ class RaceTrack:
     def evaluatePolicy(self):
         self.policy = argMaxLastNAxes(self.Q, 2)
     
+    def offPolicyMC(self):
+        states, actions, rewards = self.sampleData()
+    
+    
     def sampleData(self):
         #starting point:
         self.vel = [0, 0]
@@ -51,7 +55,7 @@ class RaceTrack:
         
         for _ in range(self.T):
             states.append(self.pos)
-            self.draw()
+            # self.draw()
             xVelInc, yVelInc = self.sampleAction()
                 
             actions.append([xVelInc + 1, yVelInc + 1])
@@ -65,7 +69,12 @@ class RaceTrack:
             
             rewards.append(self.stepReward)
             
-            if self.outOfBounds() or self.notOnTrack():
+            if self.outOfBounds():
+                self.sampleStartingPoint()
+                self.vel = [0, 0]
+                continue
+            
+            if self.notOnTrack():
                 self.sampleStartingPoint()
                 self.vel = [0, 0]
                 continue
