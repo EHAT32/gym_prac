@@ -51,3 +51,12 @@ Is there a different, fixed value of $\alpha$ at which either algorithm would ha
 significantly better than shown? Why or why not?
 
 Независимо от размера $\alpha$ ошибка сходится примерно к одному и тому же значнию, просто с разной скоростью. Нет какого-то определённого значения $\alpha$, при котором алгоритм будет работать лучше всего.
+
+### Exercise 6.5
+
+In the right graph of the random walk example, the RMS error of the
+TD method seems to go down and then up again, particularly at high $\alpha$’s. What could
+have caused this? Do you think this always occurs, or might it be a function of how the
+approximate value function was initialized?
+
+Чем дальше начальные значения от истинных, тем больше будет ошибка и тем быстрее она будет уменьшаться. При достижении минимальной ошибки (самых близких значений к истине) последующее обучение будет вносить погрешность (предсказанное значение будет колебаться около истинного значения). Если параметр $\alpha$ будет достаточно велик, то эти отклонения будут ещё больше
