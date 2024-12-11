@@ -60,3 +60,13 @@ have caused this? Do you think this always occurs, or might it be a function of 
 approximate value function was initialized?
 
 Чем дальше начальные значения от истинных, тем больше будет ошибка и тем быстрее она будет уменьшаться. При достижении минимальной ошибки (самых близких значений к истине) последующее обучение будет вносить погрешность (предсказанное значение будет колебаться около истинного значения). Если параметр $\alpha$ будет достаточно велик, то эти отклонения будут ещё больше
+
+### Exercise 6.6
+
+In Example 6.2 we stated that the true values for the random walk example
+are 1/6 , 2/6 , 3/6 , 4/6 , and 5/6 , for states A through E. Describe at least two di↵erent ways that
+these could have been computed. Which would you guess we actually used? Why?
+
+Подсчитать значения можно динамическим программирование через итерационный метод (динамическим программированием). Состояний не так уж и много, можно явно решить систему уравнений Бэллмана.
+
+Либо можно подсчитать через Монте-Карло
