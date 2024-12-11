@@ -41,3 +41,13 @@ changed? By exactly how much was it changed?
 $$
     V(A) = V(A) + \alpha (R + V(T) - V(A)) = 0.5 + 0.1 \cdot (0 + 0 - 0.5) = 0.45
 $$
+
+### Exercise 6.4
+
+The specific results shown in the right graph of the random walk example
+are dependent on the value of the step-size parameter $\alpha$. Do you think the conclusions
+about which algorithm is better would be affected if a wider range of $\alpha$ values were used?
+Is there a different, fixed value of $\alpha$ at which either algorithm would have performed
+significantly better than shown? Why or why not?
+
+Независимо от размера $\alpha$ ошибка сходится примерно к одному и тому же значнию, просто с разной скоростью. Нет какого-то определённого значения $\alpha$, при котором алгоритм будет работать лучше всего.
