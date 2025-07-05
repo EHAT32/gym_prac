@@ -100,31 +100,29 @@ $$
 Мы решаем задачу о стабилизации маятника, тогда мы всегда будем находиться вблизи равновесия $\left( \theta \approx 0, \ \dot{\theta} \approx 0 \right)$, что позволяет нам линеаризовать уравнения вблизи положения равновесия
 
 $$
-    \begin{cases}
-        u =  (M + m) \ddot{x} - \dfrac{1}{2}ml\ddot{\theta} \\
-
+    u =  (M + m) \ddot{x} - \dfrac{1}{2}ml\ddot{\theta}
+$$
+$$
         g\theta + \ddot{x} - \dfrac{2}{3}l\ddot{\theta} = 0
-    \end{cases}
 $$
 
 Выразим линейное и угловое ускорения. Для этого из уравнения $(1)$ вычтем $(2)\cdot \dfrac{3}{4}m$.
 
 $$
-    \begin{cases}
-        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
+        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta
+$$
 
+$$
         g\theta + \ddot{x} - \dfrac{2}{3}l\ddot{\theta} = 0
-    \end{cases}
 $$
 
 Теперь из уравнения $(2)$ вычтем $(1)\cdot\dfrac{1}{M + m/4}$
 
 $$
-    \begin{cases}
-        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
-
+    u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
+$$
+$$
         g\theta + \dfrac{3}{4}mg\theta\dfrac{1}{M+m/4} - \dfrac{2}{3}l\ddot{\theta} = - \dfrac{u}{M+m/4}
-    \end{cases}
 $$
 
 $$
