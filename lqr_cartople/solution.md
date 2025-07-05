@@ -40,7 +40,7 @@ $$
 $$
     v_{cm} = 
     \begin{pmatrix}
-        \dot{x} - \dfrac{1}{2}l\dot{\theta}\cos\theta \\[6pt]
+        \dot{x} - \dfrac{1}{2}l\dot{\theta}\cos\theta \\
         - \dfrac{1}{2}l\dot{\theta}\sin\theta
     \end{pmatrix}
 $$
@@ -77,14 +77,14 @@ $$
 
 $$
     \begin{cases}
-        \dfrac{d}{dt} \dfrac{\partial L}{\partial \dot{x}} - \dfrac{\partial L}{\partial x}  = u \\[6pt]
+        \dfrac{d}{dt} \dfrac{\partial L}{\partial \dot{x}} - \dfrac{\partial L}{\partial x}  = u \\
         \dfrac{d}{dt} \dfrac{\partial L}{\partial \dot{\theta}} - \dfrac{\partial L}{{\partial \theta}} = 0
     \end{cases}
 $$
 
 $$
     \begin{cases}
-        u = M\ddot{x} + m\ddot{x} + \dfrac{1}{2}ml\left( - \ddot{\theta}\cos\theta + \sin\theta \dot{\theta}^2 \right) \\[6pt]
+        u = M\ddot{x} + m\ddot{x} + \dfrac{1}{2}ml\left( - \ddot{\theta}\cos\theta + \sin\theta \dot{\theta}^2 \right) \\
 
         \dfrac{1}{2}ml\dot{x}\dot{\theta}\sin\theta + \dfrac{1}{2}mgl\sin\theta -\dfrac{1}{2}ml \left( \left( - \ddot{x}\cos\theta + \dot{x}\dot{\theta}\sin\theta + \dfrac{1}{2}l\ddot{\theta} \right) + \dfrac{1}{6}l\ddot{\theta} \right) = 0
     \end{cases}
@@ -100,7 +100,7 @@ $$
 
 $$
     \begin{cases}
-        u =  (M + m) \ddot{x} - \dfrac{1}{2}ml\ddot{\theta} \\[6pt]
+        u =  (M + m) \ddot{x} - \dfrac{1}{2}ml\ddot{\theta} \\
 
         g\theta + \ddot{x} - \dfrac{2}{3}l\ddot{\theta} = 0
     \end{cases}
@@ -110,7 +110,7 @@ $$
 
 $$
     \begin{cases}
-        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\[6pt]
+        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
 
         g\theta + \ddot{x} - \dfrac{2}{3}l\ddot{\theta} = 0
     \end{cases}
@@ -120,7 +120,7 @@ $$
 
 $$
     \begin{cases}
-        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\[6pt]
+        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
 
         g\theta + \dfrac{3}{4}mg\theta\dfrac{1}{M+m/4} - \dfrac{2}{3}l\ddot{\theta} = - \dfrac{u}{M+m/4}
     \end{cases}
@@ -128,7 +128,7 @@ $$
 
 $$
     \begin{cases}
-        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\[6pt]
+        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
 
         g\theta\left( 1 + \dfrac{3m}{4M + m} \right)  - \dfrac{2}{3}l\ddot{\theta} = - \dfrac{u}{M+m/4}
     \end{cases}
@@ -138,7 +138,7 @@ $$
 
 $$
     \begin{cases}
-        \ddot{x} = \dfrac{3mg}{4M+m}\theta + \dfrac{1}{M + m/4}u \\[6pt]
+        \ddot{x} = \dfrac{3mg}{4M+m}\theta + \dfrac{1}{M + m/4}u \\
         \ddot{\theta} = \dfrac{3g}{2l}\left( 1 + \dfrac{3m}{4M + m} \right) \theta + \dfrac{3}{2l(M + m/4)} u
     \end{cases}
 $$
