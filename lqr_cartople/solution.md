@@ -126,11 +126,10 @@ $$
 $$
 
 $$
-    \begin{cases}
-        u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
-
+    u =  (M + \dfrac{1}{4}m) \ddot{x} - \dfrac{3}{4}mg\theta \\
+$$
+$$
         g\theta\left( 1 + \dfrac{3m}{4M + m} \right)  - \dfrac{2}{3}l\ddot{\theta} = - \dfrac{u}{M+m/4}
-    \end{cases}
 $$
 
 Теперь выразим $\ddot{x}$ и $\ddot{\theta}$
