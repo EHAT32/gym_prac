@@ -83,12 +83,13 @@ $$
 $$
 
 $$
-    \begin{cases}
-        u = M\ddot{x} + m\ddot{x} + \dfrac{1}{2}ml\left( - \ddot{\theta}\cos\theta + \sin\theta \dot{\theta}^2 \right) \\
-
-        \dfrac{1}{2}ml\dot{x}\dot{\theta}\sin\theta + \dfrac{1}{2}mgl\sin\theta -\dfrac{1}{2}ml \left( \left( - \ddot{x}\cos\theta + \dot{x}\dot{\theta}\sin\theta + \dfrac{1}{2}l\ddot{\theta} \right) + \dfrac{1}{6}l\ddot{\theta} \right) = 0
-    \end{cases}
+u = M\ddot{x} + m\ddot{x} + \frac{1}{2}ml\left( - \ddot{\theta}\cos\theta + \sin\theta \dot{\theta}^2 \right)
 $$
+
+$$
+\frac{1}{2}ml\dot{x}\dot{\theta}\sin\theta + \frac{1}{2}mgl\sin\theta -\frac{1}{2}ml \left( \left( - \ddot{x}\cos\theta + \dot{x}\dot{\theta}\sin\theta + \frac{1}{2}l\ddot{\theta} \right) + \frac{1}{6}l\ddot{\theta} \right) = 0
+$$
+
 
 Упростим второе уравнение, сократив на $\dfrac{1}{2}ml$
 
